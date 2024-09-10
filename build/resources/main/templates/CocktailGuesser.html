@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail Guesser</title>
+</head>
+<body>
+    <h1> Welcome to Cocktail Guesser</h1>
+
+    <div> <!-- Game info -->
+        <p><strong>Word to Guess: </strong><span th:text="${gameState.hiddenWord}"></span></p>
+        <p>Guessed letters: <span th:text="${gameState.guessedLetters}"></span></p>
+        <p><strong>Guesses: </strong><span th:text="${gameState.guesses}"></span></p>
+        <p><strong>Cocktail Instructions: </strong><span th:text="${gameState.cocktail.instructions}"></span></p>
+    </div>
+
+    <div th:if="${message}"> <!-- Show message if the game is over -->
+        <p th:text="${message}"></p>
+        <a href="/CocktailGuesser/start">Start new game</a>
+    </div>
+
+    <div th:if="${!gameState.isGameOver()}"> <!-- Display form to submit a guess if game isn't over -->
+        <form th:action="@{/CocktailGuesser/guess}" method="post">
+            <label for="guess">Enter a letter: </label>
+            <input type="text" name="guess" maxlength="1" required />
+            <button type="submit">Guess</button>
+        </form>
+    </div>
+
+    <div th:if="${!gameState.isGameOver() && !gameState.hintShown}"> <!-- button to show hint -->
+        <form th:action="@{/CocktailGuesser/hint}" method="post">
+            <button type="submit">Show hint</button>
+        </form>
+    </div>
+
+    <div th:if="${gameState.hintShown}"> <!-- Display hint if button has been pressed -->
+        <p> Hint -> Category: <span th:text="${gameState.cocktail.category}"></span></p>
+        <p> Hint -> Glass: <span th:text="${gameState.cocktail.glass}"></span></p>
+    </div>
+
+    <div th:if="${gameState.gameWon}">
+        <p>Congratulations! You have won, the word was <span th:text="${gameState.cocktail.name}"></span></p>
+    </div>
+</body>
+</html>

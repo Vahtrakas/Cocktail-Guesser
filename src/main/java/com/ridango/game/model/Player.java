@@ -13,6 +13,8 @@ public class Player {
     private Long id;
 
     private String playerName;
+    
+    private Long playerScore;
 
     public Long getId() {
         return id;
@@ -28,6 +30,14 @@ public class Player {
 
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
+    }
+
+    public Long getPlayerScore() {
+        return playerScore;
+    }
+
+    public void setPlayerScore(Long playerScore) {
+        this.playerScore = playerScore;
     }
 
     @Override

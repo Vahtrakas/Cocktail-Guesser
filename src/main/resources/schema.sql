@@ -1,4 +1,16 @@
-CREATE TABLE IF NOT EXISTS temp(
-   id                   BIGINT AUTO_INCREMENT PRIMARY KEY
-  ,temp                 VARCHAR(256) NULL
+CREATE TABLE IF NOT EXISTS game_state (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  cocktail_name VARCHAR(255) NOT NULL,
+  hidden_word VARCHAR(255) NOT NULL,
+  guesses INT DEFAULT 0,
+  game_won BOOLEAN DEFAULT FALSE,
+  hint_shown BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS cocktail (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  instructions TEXT,
+  category VARCHAR(255),
+  glass VARCHAR(255)
 );
