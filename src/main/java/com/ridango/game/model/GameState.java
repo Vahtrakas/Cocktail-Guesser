@@ -11,13 +11,15 @@ public class GameState {
     private boolean isGameWon;
     private boolean hintShown;
     private Set<Character> guessedLetters = new HashSet<>();
+    private int playerScore;
 
     public GameState(Cocktail cocktail) {
         this.cocktail = cocktail;
-        this.hiddenWord = new String(new char[cocktail.getName().length()]).replace("\0", "*"); // Changes cocktail name letters to *.
+        this.hiddenWord = cocktail.getName().replaceAll("[A-Za-z]", "*"); // Changes cocktail name letters to * and now keeps the spaces.
         this.guesses = 0; // Sets number of guesses to 0.
         this.isGameWon = false; // Game is not won at the start of the game.
         this.hintShown = false; // Hint has not been shown at the start of the game.
+        this.playerScore = 0;
     }
 
     public Cocktail getCocktail(){
@@ -67,4 +69,14 @@ public class GameState {
     public Set<Character> getGuessedLetters() {
         return guessedLetters;
     }
+
+    public int getPlayerScore() {
+        return playerScore;
+    }
+
+    public void addPoints() {
+        this.playerScore = playerScore + 10;
+    }
+
+    
 }

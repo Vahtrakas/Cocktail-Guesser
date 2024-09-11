@@ -1,7 +1,5 @@
 package com.ridango.game.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;

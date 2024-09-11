@@ -1,8 +1,5 @@
 package com.ridango.game.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
@@ -41,8 +38,11 @@ public class LogicService {
 
         // iterate the cocktail name and update the hidden word
         for (int i = 0; i < gameState.getCocktail().getName().length(); i++) {
-            if (gameState.getCocktail().getName().charAt(i) == playerGuess.charAt(0)) {
-                hiddenWord += playerGuess.charAt(0);
+            char originalChar = gameState.getCocktail().getName().charAt(i);
+            if (originalChar == ' ') {
+                hiddenWord += ' ';
+            } else if (originalChar == charGuess) {
+                hiddenWord += charGuess;
                 isGuessCorrect = true;
             } else {
                 hiddenWord += gameState.getHiddenWord().charAt(i);
@@ -54,10 +54,11 @@ public class LogicService {
         if (!isGuessCorrect) {
             gameState.setGuesses(); // Increase guess counter
         } else {
+            gameState.addPoints();
             gameState.updateHiddenWord(hiddenWord); // update hidden word
         }
 
-        // check if the player has won by guessing the entire word
+        // check if the player has won by revealing the entire word
         if (hiddenWord.equals(gameState.getCocktail().getName())) {
             gameState.setGameWon(true);
         }

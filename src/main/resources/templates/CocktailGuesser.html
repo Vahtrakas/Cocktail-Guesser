@@ -13,14 +13,10 @@
         <p>Guessed letters: <span th:text="${gameState.guessedLetters}"></span></p>
         <p><strong>Guesses: </strong><span th:text="${gameState.guesses}"></span></p>
         <p><strong>Cocktail Instructions: </strong><span th:text="${gameState.cocktail.instructions}"></span></p>
+        <p>Your score is: <span th:text="${gameState.playerScore}" ></span></p>
     </div>
 
-    <div th:if="${message}"> <!-- Show message if the game is over -->
-        <p th:text="${message}"></p>
-        <a href="/CocktailGuesser/start">Start new game</a>
-    </div>
-
-    <div th:if="${!gameState.isGameOver()}"> <!-- Display form to submit a guess if game isn't over -->
+    <div th:if="${!gameState.isGameOver()}">  <!-- Display form to submit a guess if game isn't over  -->
         <form th:action="@{/CocktailGuesser/guess}" method="post">
             <label for="guess">Enter a letter: </label>
             <input type="text" name="guess" maxlength="1" required />
@@ -41,6 +37,12 @@
 
     <div th:if="${gameState.gameWon}">
         <p>Congratulations! You have won, the word was <span th:text="${gameState.cocktail.name}"></span></p>
+        <a href="/">Begin</a>
+    </div>
+
+    <div th:if="${message}"> <!-- Show message if the game is over -->
+        <p th:text="${message}"></p>
+        <a href="/CocktailGuesser/start">Start over</a>
     </div>
 </body>
 </html>

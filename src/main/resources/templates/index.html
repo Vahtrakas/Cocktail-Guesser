@@ -5,8 +5,9 @@
     <title>Cocktail Game</title>
 </head>
 <body>
-    <h1>Strings from public API</h1>
-
-    <p>Needs to have button that directs to /CocktailGuesser/start</p>
+    <h1>Welcome to Cocktail Guesser</h1>
+    <form th:action="@{/CocktailGuesser/start}" method="get">
+        <button type="submit">Start Game!</button>
+    </form>
 </body>
 </html>
