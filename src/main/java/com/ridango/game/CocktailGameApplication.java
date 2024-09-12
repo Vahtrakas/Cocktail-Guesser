@@ -22,11 +22,3 @@ public class CocktailGameApplication implements CommandLineRunner {
         return new RestTemplate();
     }
 }
-
-// TODO: 
-//		FRONTEND
-//	Interface, guessing box, cocktail info, cocktail name
-//		BACKEND
-//	Player name, player score (leaderboard), player attempts left, player score calculation
-//	Skip functionality, hint functionality, answer checking, 
-//	Additional info about cocktail, 
